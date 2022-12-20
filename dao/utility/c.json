@@ -1,7 +1,7 @@
 {
   "user": "root",
   "password": "Password01!",
-  "database": "sakila",
+  "database": "classicmodels",
   "host": "localhost",
   "port": "3306"
 }
