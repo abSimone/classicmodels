@@ -24,16 +24,20 @@ class Risoluzione:
     @classmethod
     def getOrdersbyEmployee(cls, nome, cognome):
         MySql.openConnection()
-        MySql.query(f'select e.employeeNumber, e.firstName, e.lastName, e.officeCode, e.email from employees e \
-            inner join customers c on e.employeeNumber=c.salesRepEmployeeNumber\
-            inner join orders o on o.customerNumber=c.customerNumber\
-            where e.firstName="{nome}" and e.lastName="{cognome}"')
+        MySql.query(f'select e.employeeNumber, e.firstName, e.lastName, e.officeCode, e.email from employees e  inner join customers c on e.employeeNumber=c.salesRepEmployeeNumber inner join orders o on o.customerNumber=c.customerNumber where e.firstName="{nome}" and e.lastName="{cognome}"')
         print('Lista ordini:\n')
+        data = MySql.getResults()
+        for object in data:
+            print(object)
+            break
         MySql.query(f'select o.orderNumber from employees e \
             inner join customers c on e.employeeNumber=c.salesRepEmployeeNumber\
             inner join orders o on o.customerNumber=c.customerNumber\
             where e.firstName="{nome}" and e.lastName="{cognome}"')
         data = MySql.getResults()
+        if len(data)==0:
+            MySql.query('select employeeNumber, firstName, lastName, officeCode from employees')
+            data=MySql.getResults()
         for object in data:
             print(object)
         

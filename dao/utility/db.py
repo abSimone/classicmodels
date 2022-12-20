@@ -10,7 +10,7 @@ class MySql:
     config = json.loads(Path(r"dao\utility\c.json").read_text())
     try:
       cls.conn =  mysql.connect(**config)
-      cls.cursor = cls.conn.cursor()
+      cls.cursor = cls.conn.cursor(buffered=True)
     except mysql.Error as er:
       print("Connessione fallita...")
     finally:
