@@ -67,3 +67,25 @@ class Gruppo3Dao:
             data = MySql.getResults()
             MySql.closeConnection()
             return data
+    
+    
+    #Esercizio4
+        
+    @classmethod
+    def getEmployeeAndOrdersInfoByCustomer(cls):
+        first_name = input("\nEnter customer name: ")
+        last_name = input("\nEnter customer surname: ")
+        MySql.openConnection()
+        MySql.query(f"SELECT emp.firstName, emp.lastName, count(*) FROM Orders ord, Employees emp, Customers cus\
+                        WHERE cus.customerNumber = ord.customerNumber and cus.salesRepEmployeeNumber = emp.employeeNumber\
+                        and cus.contactFirstName = '{first_name}' and cus.contactLastName = '{last_name}'\
+                        GROUP BY emp.firstName, emp.lastName")
+        data = MySql.getResults()
+        if data:  
+            MySql.closeConnection()
+            return data
+        else:
+            MySql.query(f"SELECT * FROM Employees")
+            data = MySql.getResults()
+            MySql.closeConnection()
+            return data
