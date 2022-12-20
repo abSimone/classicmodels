@@ -1,34 +1,37 @@
-# File che utilizzeremo in futuro :D
+from dao.esercizioDao import Risoluzione
 
-from dao.productDao import Product
-def id_product_list():
+
+def sol_es1():
     global qry1
-    id_prodotto=input('Digitare l\'id del prodotto: ')
-    qry1.getProductbyID(id_prodotto)
+    officecode=input('Digitare il codice dell\'ufficio: ')
+    qry1.getCustomerbyOfficecode(officecode)
     
 
-def product_research():
+def sol_es2():
     global qry1
-    product_name=input('Digitare il nome del prodotto: ')
-    qry1.getProductbyName(product_name)
+    productline_name=input('Digitare il nome della product line: ')
+    qry1.getOrdersbyProductline(productline_name)
 
-def productline_research():
+def sol_es3():
     global qry1
-    productline_name=input('Digitare la product line: ')
-    qry1.getProductbyProductline(productline_name)
+    nome=input('Digitare il nome dell\'impiegato: ')
+    cognome=input('Digitare il cognome dell\'impiegato: ')
+    qry1.getOrdersbyEmployee(nome, cognome)
     
+def sol_es4():
+    pass
 
-qry1=Product()
-selezione=int(input('(Selezionare con 1,2 o 3)\n1)Prodotti Disponibili\n2)Cerca tramite ID del prodotto\n3)Ricerca prodotto specifico tramite il nome\n4)Rocerca prodotto per Linea\n--->'))
+qry1=Risoluzione()
+selezione=int(input('(Selezionare con 1,2,3 o 4)\n1)Soluzione esercizio 1\n2)Soluzione esercizio 2\n3)Soluzione esercizio 3\n4)Soluzione esercizio 4\n--->'))
 match selezione:
     case 1:
-        qry1.getAllProduct()
+        sol_es1()
     case 2:
-        id_product_list()
+        sol_es2()
     case 3:
-        product_research()
+        sol_es3()
     case 4:
-        productline_research()
+        sol_es4()
     
 
 

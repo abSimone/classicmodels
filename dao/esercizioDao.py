@@ -12,9 +12,9 @@ class Risoluzione:
         MySql.closeConnection()
 
     @classmethod
-    def getProductbyProductline(cls, product_line):
+    def getOrdersbyProductline(cls, product_line):
         MySql.openConnection()
-        MySql.query(f'SELECT productLine, productName, cast(buyPrice as char) from products where productLine="{product_line}" order by productName ') 
+        MySql.query(f'select o.orderNumber, orderDate, requiredDate, shippedDate, status from orders o inner join orderdetails od on o.orderNumber=od.orderNumber inner join products p on p.productCode=od.productCode inner join productlines pl on p.productLine=pl.productLine where p.productLine=\'{product_line}\' and orderDate between \'2003-01-15\' and \'2003-01-31\'')
         data = MySql.getResults()
         for object in data:
             print(object)
@@ -22,10 +22,17 @@ class Risoluzione:
         MySql.closeConnection()
 
     @classmethod
-    def getAllProduct(cls):
+    def getOrdersbyEmployee(cls, nome, cognome):
         MySql.openConnection()
-        MySql.query("SELECT productName, cast(buyPrice as char), cast(MSRP as char) from products order by productName") #inserisci query
-        
+        MySql.query(f'select e.employeeNumber, e.firstName, e.lastName, e.officeCode, e.email from employees e \
+            inner join customers c on e.employeeNumber=c.salesRepEmployeeNumber\
+            inner join orders o on o.customerNumber=c.customerNumber\
+            where e.firstName="{nome}" and e.lastName="{cognome}"')
+        print('Lista ordini:\n')
+        MySql.query(f'select o.orderNumber from employees e \
+            inner join customers c on e.employeeNumber=c.salesRepEmployeeNumber\
+            inner join orders o on o.customerNumber=c.customerNumber\
+            where e.firstName="{nome}" and e.lastName="{cognome}"')
         data = MySql.getResults()
         for object in data:
             print(object)

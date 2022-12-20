@@ -1,6 +1,6 @@
 {
   "user": "root",
-  "password": "Password01!",
+  "password": "",
   "database": "classicmodels",
   "host": "localhost",
   "port": "3306"
