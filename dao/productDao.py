@@ -13,6 +13,16 @@ class Product:
         MySql.closeConnection()
 
     @classmethod
+    def getProductbyProductline(cls, product_line):
+        MySql.openConnection()
+        MySql.query(f'SELECT productLine, productName, cast(buyPrice as char) from products where productLine="{product_line}" order by productName ') 
+        data = MySql.getResults()
+        for object in data:
+            print(object)
+        
+        MySql.closeConnection()
+
+    @classmethod
     def getAllProduct(cls):
         MySql.openConnection()
         MySql.query("SELECT productName, cast(buyPrice as char), cast(MSRP as char) from products order by productName") #inserisci query
