@@ -29,7 +29,7 @@ class Product:
         
         data = MySql.getResults()
         for object in data:
-            print((object))
+            print(object)
         
         MySql.closeConnection()
 

@@ -1,6 +1,9 @@
 # File che utilizzeremo in futuro :D
 
 from dao.productDao import Product
+from dao.customersDao import CustomersDao
+from dao.EmployeeDao import EmployeeDao
+
 def id_product_list():
     global qry1
     id_prodotto=input('Digitare l\'id del prodotto: ')
@@ -19,7 +22,7 @@ def productline_research():
     
 
 qry1=Product()
-selezione=int(input('(Selezionare con 1,2 o 3)\n1)Prodotti Disponibili\n2)Cerca tramite ID del prodotto\n3)Ricerca prodotto specifico tramite il nome\n4)Rocerca prodotto per Linea\n--->'))
+selezione=int(input('(Selezionare con 1,2 o 3)\n1)Prodotti Disponibili\n2)Cerca tramite ID del prodotto\n3)Ricerca prodotto specifico tramite il nome\n4)Rocerca prodotto per Linea:\n--->'))
 match selezione:
     case 1:
         qry1.getAllProduct()
