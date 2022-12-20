@@ -19,7 +19,10 @@ def sol_es3():
     qry1.getOrdersbyEmployee(nome, cognome)
     
 def sol_es4():
-    pass
+    global qry1
+    nome=input('Nome del cliente: ')
+    cognome=input('Cognome del cliente: ')
+    qry1.getOrderNumberbyCustomerdetails(nome,cognome)
 
 qry1=Risoluzione()
 selezione=int(input('(Selezionare con 1,2,3 o 4)\n1)Soluzione esercizio 1\n2)Soluzione esercizio 2\n3)Soluzione esercizio 3\n4)Soluzione esercizio 4\n--->'))

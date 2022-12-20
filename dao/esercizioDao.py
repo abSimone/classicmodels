@@ -45,10 +45,14 @@ class Risoluzione:
 
     
     @classmethod
-    def  getProductbyID(cls, id_prodotto):
+    def  getOrderNumberbyCustomerdetails(cls, nome, congnome):
         MySql.openConnection()
-        MySql.query(f'SELECT productCode, productName, cast(buyPrice AS char) FROM products WHERE productCode = "{id_prodotto}"') #inserisci query
-
+        MySql.query(f'Select e.firstName, e.lastName,count(*) from customers c\
+            inner join employees e on c.salesRepEmployeeNumber=e.employeeNumber\
+            inner join orders o on c.customerNumber=o.customerNumber\
+            inner join orderdetails od on o.orderNumber=od.orderNumber\
+            where contactFirstName="{nome}"and contactLastName="{congnome}"\
+            group by employeeNumber') 
         data=MySql.getResults()
         MySql.closeConnection()
         for object in data:
