@@ -97,3 +97,11 @@ class Orders:
         data = MySql.getResults()
         MySql.closeConnection()
         return data
+    
+    @classmethod
+    def setOrder(cls, orderNumber, orderDate, requiredDate, shippedDate, status, comments, customerNumber):
+        MySql.openConnection()
+        MySql.query(f"insert  into orders(orderNumber,orderDate,requiredDate,shippedDate,status,comments,customerNumber) \
+                      values  ({orderNumber},'{orderDate}','{requiredDate}','{shippedDate}','{status}',{comments},{customerNumber})")
+        MySql.commit()
+        MySql.closeConnection()
