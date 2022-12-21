@@ -117,3 +117,35 @@ class CustomersDao:
         data = MySql.getResults()
         MySql.closeConnection()
         return data
+    
+    @classmethod
+    def insertCustomer(cls):
+        print("\nAdd new customer")
+        customerNumber = int(input("\nEnter the customer number: "))
+        customerName = input("\nEnter the customer name: ")
+        contactLastName = input("\nEnter the customer first name: ")
+        contactFirstName = input("\nEnter the customer last name: ")
+        phone = int(input("\nEnter the customer phone number: "))
+        addressLine1 = input("\nEnter address 1: ")
+        addressLine2 = input("\nEnter address 2: ")
+        city = input("\nEnter city: ")
+        state = input("\nEnter state: ")
+        postalCode = int(input("\nEnter postal code: "))
+        country = input("\nEnter country: ")
+        salesRepEmployeeNumber = int(input("\nEnter employee number: "))
+        creditLimit = int(input("\nEnter credit limit: "))
+        MySql.openConnection()
+        MySql.query(f"INSERT INTO Customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit)\
+                        VALUES ('{customerNumber}', '{customerName}', '{contactLastName}', '{contactFirstName}', '{phone}', '{addressLine1}', '{addressLine2}', '{city}', '{state}', '{postalCode}', '{country}', '{salesRepEmployeeNumber}', '{creditLimit}')")
+        MySql.commit()
+        MySql.closeConnection()
+        return
+    
+    @classmethod
+    def deleteCustomer(cls):
+        value = input("Enter the customer number you want delete: ")
+        MySql.openConnection()
+        MySql.query(f"DELETE FROM Customers WHERE customerNumber={value}")
+        MySql.commit()
+        MySql.closeConnection()
+        return
