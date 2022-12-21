@@ -95,7 +95,7 @@ class PaymentsDao:
     # delete
     @classmethod
     def deletePayment(cls):
-        value = input("Enter the checknumber you want delete: ")
+        value = input("Enter the checknumber of the payment you want to delete: ")
         MySql.openConnection()
         MySql.query("SET FOREIGN_KEY_CHECKS=0")
         MySql.query(f"DELETE from payments where checkNumber = '{value}'")
