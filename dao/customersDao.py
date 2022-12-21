@@ -135,7 +135,7 @@ class CustomersDao:
         salesRepEmployeeNumber = int(input("\nEnter employee number: "))
         creditLimit = int(input("\nEnter credit limit: "))
         MySql.openConnection()
-        MySql.query(f"INSERT INTO Customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit)\
+        MySql.query(f"INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit)\
                         VALUES ('{customerNumber}', '{customerName}', '{contactLastName}', '{contactFirstName}', '{phone}', '{addressLine1}', '{addressLine2}', '{city}', '{state}', '{postalCode}', '{country}', '{salesRepEmployeeNumber}', '{creditLimit}')")
         MySql.commit()
         data = MySql.getResults()
@@ -169,9 +169,9 @@ class CustomersDao:
         creditLimit = int(input("\nEnter credit limit: "))
         MySql.openConnection()
         MySql.query(f"UPDATE customers\
-                    SET customerName = {customerName}, contactLastName = {contactLastName}, \
-                    contactFirstName = {contactFirstName}, phone = {phone}, addressLine1 = {addressLine1}, addressLine2 = {addressLine2}, \
-                    city = {city}, state = {state}, postalCode = {postalCode}, country = {country}, creditLimit = {creditLimit} \
+                    SET customerName = '{customerName}', contactLastName = '{contactLastName}', \
+                    contactFirstName = '{contactFirstName}', phone = {phone}, addressLine1 = '{addressLine1}', addressLine2 = '{addressLine2}', \
+                    city = '{city}', state = '{state}', postalCode = {postalCode}, country = '{country}', creditLimit = {creditLimit} \
                     WHERE customerNumber = {customerNumber}")
         MySql.commit()
         data = MySql.getResults()
