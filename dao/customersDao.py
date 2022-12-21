@@ -118,6 +118,7 @@ class CustomersDao:
         MySql.closeConnection()
         return data
     
+    # insert
     @classmethod
     def insertCustomer(cls):
         print("\nAdd new customer")
@@ -138,20 +139,20 @@ class CustomersDao:
         MySql.query(f"INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit)\
                         VALUES ('{customerNumber}', '{customerName}', '{contactLastName}', '{contactFirstName}', '{phone}', '{addressLine1}', '{addressLine2}', '{city}', '{state}', '{postalCode}', '{country}', '{salesRepEmployeeNumber}', '{creditLimit}')")
         MySql.commit()
-        data = MySql.getResults()
         MySql.closeConnection()
-        return data
-    
+        
+    # delete
     @classmethod
     def deleteCustomer(cls):
-        value = input("Enter the customer number you want delete: ")
+        value = int(input("Enter the customer number you want delete: "))
         MySql.openConnection()
-        MySql.query(f"DELETE FROM Customers WHERE customerNumber={value}")
+        MySql.query("SET FOREIGN_KEY_CHECKS=0")
+        MySql.query(f"DELETE from customers where customerNumber = {value}")
+        MySql.query("SET FOREIGN_KEY_CHECKS=1")
         MySql.commit()
-        data = MySql.getResults()
         MySql.closeConnection()
-        return data
-    
+        
+    # update
     @classmethod
     def updateCustomer(cls):
         print("\nUpdate Customer")
@@ -174,7 +175,6 @@ class CustomersDao:
                     city = '{city}', state = '{state}', postalCode = {postalCode}, country = '{country}', creditLimit = {creditLimit} \
                     WHERE customerNumber = {customerNumber}")
         MySql.commit()
-        data = MySql.getResults()
         MySql.closeConnection()
-        return data
+        
         
