@@ -16,7 +16,6 @@ class OfficeDao:
     @classmethod
     def addOffice(cls, office_data):
         MySql.openConnection()
-        # autoincrement per id?
         MySql.query(
             f"INSERT INTO offices\
             VALUES(\
