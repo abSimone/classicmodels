@@ -45,3 +45,11 @@ class Product:
             print(object)
        
         MySql.closeConnection()
+    
+    @classmethod
+    def insertProduct(cls, product_code, product_name, product_line, product_scale, product_vendor, product_description, quantity_instock, buy_price, msrp):
+        MySql.openConnection()
+        MySql.query(f'insert  into products(productCode,productName,productLine,productScale,productVendor,productDescription,quantityInStock,buyPrice,MSRP)\
+                    values ("{product_code}","{product_name}","{product_line}","{product_scale}","{product_vendor}","{product_description}","{quantity_instock}","{buy_price}","{msrp}")')
+        MySql.dbCommit()
+        MySql.closeConnection()
