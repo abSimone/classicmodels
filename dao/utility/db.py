@@ -23,6 +23,11 @@ class MySql:
   @classmethod
   def getResults(cls):
     return cls.cursor.fetchall()
+  
+  @classmethod
+  def dbCommit(cls):
+    cls.conn.commit()
+
 
   @classmethod
   def closeConnection(cls):

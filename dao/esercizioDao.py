@@ -59,3 +59,25 @@ class Risoluzione:
             print(object)
        
         MySql.closeConnection()
+    
+    @classmethod
+    def insertProduct(cls, product_code, product_name, product_line, product_scale, product_vendor, product_description, quantity_instock, buy_price, msrp):
+        MySql.openConnection()
+        MySql.query(f'insert  into products(productCode,productName,productLine,productScale,productVendor,productDescription,quantityInStock,buyPrice,MSRP)\
+                    values ("{product_code}","{product_name}","{product_line}","{product_scale}","{product_vendor}","{product_description}","{quantity_instock}","{buy_price}","{msrp}")')
+        MySql.dbCommit()
+        MySql.closeConnection()
+
+    @classmethod
+    def deleteFromProductsbyID(cls, id_prodotto):
+        MySql.openConnection()
+        MySql.query(f'delete from products where productCode="{id_prodotto}"')
+        MySql.dbCommit()
+        MySql.closeConnection()
+
+    @classmethod
+    def updateProductNamebyID(cls, nome, id_prodotto):
+        MySql.openConnection()
+        MySql.query(f'update products set productName="{nome}" where productCode="{id_prodotto}"')
+        MySql.dbCommit()
+        MySql.closeConnection()
