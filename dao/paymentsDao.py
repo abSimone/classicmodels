@@ -82,7 +82,7 @@ class PaymentsDao:
     @classmethod
     def updatePayment(cls):
         print("\nUpdate payment")
-        checkNumber = input('\nEnter the checkNumber')
+        checkNumber = input('\nEnter the checkNumber:')
         paymentDate = input("\nEnter the payment date: ")
         amount = float(input("\nEnter the amount: "))
         MySql.openConnection()
@@ -98,7 +98,7 @@ class PaymentsDao:
         value = input("Enter the checknumber you want delete: ")
         MySql.openConnection()
         MySql.query("SET FOREIGN_KEY_CHECKS=0")
-        MySql.query(f"DELETE from payments where checkNumber = {value}")
+        MySql.query(f"DELETE from payments where checkNumber = '{value}'")
         MySql.query("SET FOREIGN_KEY_CHECKS=1")
         MySql.commit()
         MySql.closeConnection()
