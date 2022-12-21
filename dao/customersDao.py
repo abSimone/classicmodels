@@ -138,8 +138,9 @@ class CustomersDao:
         MySql.query(f"INSERT INTO Customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit)\
                         VALUES ('{customerNumber}', '{customerName}', '{contactLastName}', '{contactFirstName}', '{phone}', '{addressLine1}', '{addressLine2}', '{city}', '{state}', '{postalCode}', '{country}', '{salesRepEmployeeNumber}', '{creditLimit}')")
         MySql.commit()
+        data = MySql.getResults()
         MySql.closeConnection()
-        return
+        return data
     
     @classmethod
     def deleteCustomer(cls):
@@ -147,5 +148,33 @@ class CustomersDao:
         MySql.openConnection()
         MySql.query(f"DELETE FROM Customers WHERE customerNumber={value}")
         MySql.commit()
+        data = MySql.getResults()
         MySql.closeConnection()
-        return
+        return data
+    
+    @classmethod
+    def updateCustomer(cls):
+        print("\nUpdate Customer")
+        customerNumber = int(input("\nEnter the customer number: "))
+        customerName = input("\nEnter the customer name: ")
+        contactLastName = input("\nEnter the customer first name: ")
+        contactFirstName = input("\nEnter the customer last name: ")
+        phone = int(input("\nEnter the customer phone number: "))
+        addressLine1 = input("\nEnter address 1: ")
+        addressLine2 = input("\nEnter address 2: ")
+        city = input("\nEnter city: ")
+        state = input("\nEnter state: ")
+        postalCode = int(input("\nEnter postal code: "))
+        country = input("\nEnter country: ")
+        creditLimit = int(input("\nEnter credit limit: "))
+        MySql.openConnection()
+        MySql.query(f"UPDATE customers\
+                    SET customerName = {customerName}, contactLastName = {contactLastName}, \
+                    contactFirstName = {contactFirstName}, phone = {phone}, addressLine1 = {addressLine1}, addressLine2 = {addressLine2}, \
+                    city = {city}, state = {state}, postalCode = {postalCode}, country = {country}, creditLimit = {creditLimit} \
+                    WHERE customerNumber = {customerNumber}")
+        MySql.commit()
+        data = MySql.getResults()
+        MySql.closeConnection()
+        return data
+        
