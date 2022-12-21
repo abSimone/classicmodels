@@ -29,7 +29,7 @@ class EmployeeDao:
         return results
 
     # Create
-
+    # employee_data dev'essere un dict con le chiavi esplicitate per poter funzionare
     @classmethod
     def addEmployee(cls, employee_data):
         MySql.openConnection()
@@ -57,7 +57,7 @@ class EmployeeDao:
         MySql.commit()
         MySql.closeConnection()
 
-    # delete employee
+    # delete
     @classmethod
     def removeEmployee(cls, employee_number):
         MySql.openConnection()
