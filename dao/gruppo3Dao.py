@@ -30,28 +30,9 @@ class Gruppo3Dao:
     
     
     #Esercizio3
-    
-    '''@classmethod
-    def getAllEmployees(cls):
-        first_name = input("\nEnter employee name: ")
-        last_name = input("\nEnter employee surname: ")
-        MySql.openConnection()
-        MySql.query(f"(SELECT * FROM Employees emp WHERE emp.firstName = '{first_name}' and emp.lastName = '{last_name}') UNION\
-                        (SELECT * FROM Orders ord JOIN Customers cus on cus.customerNumber = ord.customerNumber\
-                        JOIN Employees emp on emp.employeeNumber = cus.salesRepEmployeeNumber\
-                        WHERE emp.firstName = '{first_name}' and emp.lastName = '{last_name}')")
-        data = MySql.getResults()
-        if data:  
-            MySql.closeConnection()
-            return data
-        else:
-            MySql.query(f"SELECT * FROM Employees")
-            data = MySql.getResults()
-            MySql.closeConnection()
-            return data'''
         
     @classmethod
-    def getAllOrderByEmployeeInfo(cls):
+    def getAllOrdersByEmployeeInfo(cls):
         first_name = input("\nEnter employee name: ")
         last_name = input("\nEnter employee surname: ")
         MySql.openConnection()
