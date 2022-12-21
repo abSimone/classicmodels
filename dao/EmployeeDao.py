@@ -33,7 +33,6 @@ class EmployeeDao:
     @classmethod
     def addEmployee(cls, employee_data):
         MySql.openConnection()
-        # autoincrement per id?
         MySql.query(
             f"INSERT INTO employees\
             VALUES(\
