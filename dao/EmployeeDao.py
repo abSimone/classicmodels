@@ -33,6 +33,7 @@ class EmployeeDao:
     @classmethod
     def addEmployee(cls, employee_data):
         MySql.openConnection()
+        # autoincrement per id?
         MySql.query(
             f"INSERT INTO employees\
             VALUES(\
@@ -53,7 +54,7 @@ class EmployeeDao:
     def updateEmployee(cls, employee_data):
         MySql.openConnection()
         MySql.query(
-            f"update employees set lastName =  '{employee_data['lastName']}', firstName =  '{employee_data['firstName']}' where employeeNumber = {employee_data['employeeNumber']}")
+            f"update employees set lastName = '{employee_data['lastName']}', firstName =  '{employee_data['firstName']}', extension =  '{employee_data['extension']}', email = '{employee_data['email']}', officeCode = {employee_data['officeCode']}, reportsTo = {employee_data['reportsTo']}, jobTitle = '{employee_data['jobTitle']}' where employeeNumber = {employee_data['employeeNumber']}")
         MySql.commit()
         MySql.closeConnection()
 
