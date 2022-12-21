@@ -20,7 +20,7 @@ class ProductLines:
         MySql.closeConnection()
 
     @classmethod
-    def getAllProduct(cls, product_line):
+    def deleteProductLine(cls, product_line):
         MySql.openConnection()
         MySql.query(f'DELETE FROM productlines WHERE productLine = "{product_line}"') 
         MySql.dbCommit()
@@ -29,7 +29,7 @@ class ProductLines:
 
     
     @classmethod
-    def  getProductbyID(cls, product_line, descrizione):
+    def  updateProductLine(cls, product_line, descrizione):
         MySql.openConnection()
         MySql.query(f'UPDATE productlines SET textDescription = "{descrizione}" WHERE productLine = "{product_line}"') 
         MySql.dbCommit()
