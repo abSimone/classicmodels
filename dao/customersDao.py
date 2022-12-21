@@ -140,3 +140,12 @@ class CustomersDao:
         MySql.commit()
         MySql.closeConnection()
         return
+    
+    @classmethod
+    def deleteCustomer(cls):
+        value = input("Enter the customer number you want delete: ")
+        MySql.openConnection()
+        MySql.query(f"DELETE FROM Customers WHERE customerNumber={value}")
+        MySql.commit()
+        MySql.closeConnection()
+        return
