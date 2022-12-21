@@ -29,5 +29,9 @@ class MySql:
     cls.cursor.close()
     cls.conn.close()
 
+  @classmethod
+  def commit(cls):
+    cls.conn.commit()
+
 
 
