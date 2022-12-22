@@ -27,6 +27,15 @@ class EmployeeDao:
         results = MySql.getResults()
         MySql.closeConnection()
         return results
+    
+    @classmethod
+    def getOfficeByEmployeeNumber(cls, employeeNumber):
+        MySql.openConnection()
+        MySql.query(
+            f"select offices.officeCode from employees INNER JOIN offices on employees.officeCode = offices.officeCode where employees.employeeNumber = '{employeeNumber}'")
+        results = MySql.getResults()
+        MySql.closeConnection()
+        return results
 
     # Create
     # employee_data dev'essere un dict con le chiavi esplicitate per poter funzionare
