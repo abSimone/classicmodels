@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-
+from dto.emplyeedto import Employeedto
 
 class EmployeeDao:
     # read
@@ -8,8 +8,11 @@ class EmployeeDao:
         MySql.openConnection()
         MySql.query("select * from employees")
         results = MySql.getResults()
+        employee=list()
+        for element in results:
+            employee.append(Employeedto(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]))
         MySql.closeConnection()
-        return results
+        return employee
 
     @classmethod
     def getEmployeeByNumber(cls, number):

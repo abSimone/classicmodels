@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.productlinesdto import ProductLinesdto
 
 class ProductLines:
     @classmethod
@@ -6,10 +7,11 @@ class ProductLines:
         MySql.openConnection()
         MySql.query(f'SELECT * from productLines ') 
         data = MySql.getResults()
-        for object in data:
-            print(object)
-        
+        productline=list()
+        for element in data:
+            productline.append(ProductLinesdto(element[0], element[1], element[2], element[3]))
         MySql.closeConnection()
+        return productline
 
     @classmethod
     def insertProductLine(cls, product_line, text_description):

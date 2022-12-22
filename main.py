@@ -1,7 +1,6 @@
 # File che utilizzeremo in futuro :D
-from dao.ordersDao import Orders
-from dto.ordersDto import Ordersdto
+from dao.productLinesDao import ProductLines
 
-result=Orders.getAllOrders()
+result=ProductLines.getAllProductLines()
 for r in result:
     print(r)

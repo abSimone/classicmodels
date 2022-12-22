@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.productdto import Productdto
 
 class Product:
 
@@ -7,10 +8,11 @@ class Product:
         MySql.openConnection()
         MySql.query(f'SELECT productLine, productName, cast(buyPrice as char) from products where productName="{product_name}" ') 
         data = MySql.getResults()
-        for object in data:
-            print(object)
-        
+        product=list()
+        for element in data:
+            product.append(Productdto(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]))
         MySql.closeConnection()
+        return product
 
     @classmethod
     def getProductbyProductline(cls, product_line):
