@@ -1,6 +1,6 @@
 class Office:
     def __init__(self, productLine, textDescription, htmlDescription, image):
-        self.productLine=productLine
+        self._productLine=productLine
         self._textDescription=textDescription
         self._htmlDescription=htmlDescription
         self._image=image
