@@ -33,11 +33,14 @@ class EmployeeDao:
     def getOfficeByEmployeeNumber(cls, employeeNumber):
         MySql.openConnection()
         MySql.query(
-            f"select offices.officeCode from employees INNER JOIN offices on employees.officeCode = offices.officeCode where employees.employeeNumber = '{employeeNumber}'")
+            f"select offices.officeCode,offices.city,offices.phone,offices.addressLine1,offices.addressLine2,offices.state,offices.country,offices.postalCode,offices.territory \
+            from employees \
+            INNER JOIN offices on employees.officeCode = offices.officeCode \
+            where employees.employeeNumber = '{employeeNumber}'")
         results = MySql.getResults()
         data= list()
         for element in results:
-            data.append(Office(element[0]))
+            data.append(Office(element[0],element[1],element[2],element[3],element[4],element[5],element[6],element[7],element[8]))
         MySql.closeConnection()
         return data
 

@@ -1,83 +1,86 @@
 class Office:
     def __init__(self, officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory):
         self.officeCode=officeCode
-        self.city=city
-        self.phone=phone
-        self.addressLine1=addressLine1
-        self.addressLine2=addressLine2
-        self.state=state
-        self.country = country
-        self.postalCode = postalCode
-        self.territory = territory
+        self._city=city
+        self._phone=phone
+        self._addressLine1=addressLine1
+        self._addressLine2=addressLine2
+        self._state=state
+        self._country = country
+        self._postalCode = postalCode
+        self._territory = territory
   
     @property
     def officeCode(self):
-        return self.officeCode 
+        return self._officeCode 
     
     @officeCode.setter    
     def officeCode(self, officeCode):
-        self.officeCode = officeCode
+        self._officeCode = officeCode
         
     @property
     def city(self):
-        return self.city
+        return self._city
     
     @city.setter    
     def city(self, city):
-        self.city = city
+        self._city = city
     
     @property
     def phone(self):
-        return self.phone 
+        return self._phone 
     
     @phone.setter    
     def phone(self, phone):
-        self.phone = phone
+        self._phone = phone
         
     @property
     def addressLine1(self):
-        return self.addressLine1 
+        return self._addressLine1 
     
     @addressLine1.setter    
     def addressLine1(self, addressLine1):
-        self.addressLine1 = addressLine1
+        self._addressLine1 = addressLine1
         
     @property
     def addressLine2(self):
-        return self.addressLine2 
+        return self._addressLine2 
     
     @addressLine2.setter    
     def addressLine2(self, addressLine2):
-        self.addressLine2 = addressLine2
+        self._addressLine2 = addressLine2
         
     @property
     def state(self):
-        return self.state 
+        return self._state 
     
     @state.setter    
     def state(self, state):
-        self.state = state
+        self._state = state
         
     @property
     def country(self):
-        return self.country 
+        return self._country 
     
     @country.setter    
     def country(self, country):
-        self.country = country
+        self._country = country
         
     @property
     def postalCode(self):
-        return self.postalCode 
+        return self._postalCode 
     
     @state.setter    
     def postalCode(self, postalCode):
-        self.postalCode = postalCode
+        self._postalCode = postalCode
         
     @property
     def territory(self):
-        return self.territory 
+        return self._territory 
     
     @territory.setter    
     def territory(self, territory):
-        self.territory = territory
+        self._territory = territory
+    
+    def __str__(self):
+        return f"codice: {self._officeCode}, città: {self._city}, telefono: {self._phone}, indirizzo 1: {self._addressLine1}, indirizzo 2 {self._addressLine2}, stato: {self._state}, regione: {self._country}, codice postale: {self._postalCode}, territorio: {self._territory}"
