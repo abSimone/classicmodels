@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.employee import Employee
 from dto.office import Office
 
 
@@ -7,8 +8,11 @@ class EmployeeDao:
     @classmethod
     def getAllEmployees(cls):
         MySql.openConnection()
-        MySql.query("select * from employees")
-        results = MySql.getResults()
+        MySql.query("SELECT * FROM Employees")
+        data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Employee(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]))
         MySql.closeConnection()
         return results
 

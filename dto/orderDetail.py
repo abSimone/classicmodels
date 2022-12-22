@@ -1,4 +1,4 @@
-class Office:
+class OrderDetail:
     def __init__(self, orderNumber, productCode, quantityOrdered, priceEach, orderLineNumber):
         self._orderNumber=orderNumber
         self._productCode=productCode

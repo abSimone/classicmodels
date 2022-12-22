@@ -1,14 +1,18 @@
 from dao.utility.db import MySql
+from dto.orderDetail import OrderDetail
 
 class orderDetails:
 
     @classmethod
     def getAllOrdersDetails(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM orderdetails")
+        MySql.query("SELECT * FROM OrderDetails")
         data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(OrderDetail(element[0], element[1], element[2], element[3], element[4]))
         MySql.closeConnection()
-        return data
+        return results
 
     @classmethod
     def getAllOrdersDetailsNumber(cls):

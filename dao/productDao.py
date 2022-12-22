@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.products import Products
 
 class Product:
 
@@ -25,13 +26,14 @@ class Product:
     @classmethod
     def getAllProduct(cls):
         MySql.openConnection()
-        MySql.query("SELECT productName, cast(buyPrice as char), cast(MSRP as char) from products order by productName") #inserisci query
-        
+        MySql.openConnection()
+        MySql.query("SELECT * FROM Products")
         data = MySql.getResults()
-        for object in data:
-            print(object)
-        
+        results = list()
+        for element in data:
+            results.append(Products(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]))
         MySql.closeConnection()
+        return results
 
     
     @classmethod
@@ -51,5 +53,5 @@ class Product:
         MySql.openConnection()
         MySql.query(f'insert  into products(productCode,productName,productLine,productScale,productVendor,productDescription,quantityInStock,buyPrice,MSRP)\
                     values ("{product_code}","{product_name}","{product_line}","{product_scale}","{product_vendor}","{product_description}","{quantity_instock}","{buy_price}","{msrp}")')
-        MySql.dbCommit()
+        MySql.commit()
         MySql.closeConnection()
