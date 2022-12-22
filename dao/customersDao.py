@@ -1,13 +1,27 @@
 from dao.utility.db import MySql
+from dto.Customer import Customer
 
 class CustomersDao:
+    @classmethod
+    def getCustomerByCustomerNumber(cls):
+        value = input('Enter a customer number: \n')
+        MySql.openConnection()
+        MySql.query(f"SELECT cus.contactFirstName, cus.contactLastName FROM customers cus WHERE cus.customerNumber = '{value}'")
+        data= MySql.getResults()
+        MySql.closeConnection()
+        
+        return data
+    
     @classmethod
     def getAllCustomers(cls):
         MySql.openConnection()
         MySql.query("SELECT * FROM Customers")
         data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Customer(element[0], element[1], element[2], element[3], element[4], element[5]))
         MySql.closeConnection()
-        return data
+        return results
     
     @classmethod
     def getAllCustomerNumber(cls):
