@@ -1,5 +1,6 @@
 from dao.utility.db import MySql
 from dto.Office import Office
+from dto.Employee import Employee
 
 
 class EmployeeDao:
@@ -9,16 +10,22 @@ class EmployeeDao:
         MySql.openConnection()
         MySql.query("select * from employees")
         results = MySql.getResults()
+        employees = []
+        for element in results:
+            employees.append(Employee(
+                element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]))
         MySql.closeConnection()
-        return results
+        return employees
 
     @classmethod
     def getEmployeeByNumber(cls, number):
         MySql.openConnection()
         MySql.query(f"select * from employees where employeeNumber = {number}")
         results = MySql.getResults()
+        employee = Employee(results[0][0], results[0][1], results[0][2], results[0]
+                            [3], results[0][4], results[0][5], results[0][6], results[0][7])
         MySql.closeConnection()
-        return results
+        return employee
 
     @classmethod
     def getEmployeesByCity(cls, city):
@@ -77,6 +84,7 @@ class EmployeeDao:
             INNER JOIN offices o on e.officeCode=o.officeCode \
             where employeeNumber={employee_number}")
         results = MySql.getResults()
-        office = Office(results[0][0], results[0][1], results[0][2], results[0][3], results[0][4], results[0][5], results[0][6], results[0][7], results[0][8])
+        office = Office(results[0][0], results[0][1], results[0][2], results[0][3],
+                        results[0][4], results[0][5], results[0][6], results[0][7], results[0][8])
         MySql.closeConnection()
         return office
