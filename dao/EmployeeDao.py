@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-from dto.Office import Office
+from dto.office import Office
 
 
 class EmployeeDao:
