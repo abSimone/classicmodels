@@ -1,4 +1,4 @@
-class Officedao:
+class Officedto:
     def __init__(self, officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory):
         self.officeCode = officeCode
         self.city = city
