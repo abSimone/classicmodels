@@ -1,13 +1,16 @@
 from dao.utility.db import MySql
-
+from dto.office import Office
 
 class OfficeDao:
     # read
     @classmethod
     def getAllOffices(cls):
         MySql.openConnection()
-        MySql.query("select * from offices")
-        results = MySql.getResults()
+        MySql.query("SELECT * FROM Offices")
+        data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Office(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
         MySql.closeConnection()
         return results
 
