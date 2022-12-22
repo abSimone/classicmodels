@@ -1,13 +1,9 @@
-from dao.customersDao import CustomersDao
+from dao.officesDao import OfficeDao
 from dto.Customer import Customer
 
-result = CustomersDao.getAllCustomers()
+result = OfficeDao.getOfficeByEmployeeNum(1002)
 print(result)
 
-risultato_nomi = []
-for customer in result:
-    if len(customer.customerName) <= 6:
-        risultato_nomi.append([customer.contactFirstName, customer.contactLastName])
 
         
     
