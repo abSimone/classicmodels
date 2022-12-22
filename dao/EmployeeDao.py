@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.Employee import Employee
 
 
 class EmployeeDao:
@@ -8,16 +9,21 @@ class EmployeeDao:
         MySql.openConnection()
         MySql.query("select * from employees")
         results = MySql.getResults()
+        data=list()
+        for item in results:
+            data.append(Employee(item[0],item[1],item[2],item[3],item[4],item[5],item[6],item[7]))
         MySql.closeConnection()
-        return results
+        return data
 
     @classmethod
     def getEmployeeByNumber(cls, number):
         MySql.openConnection()
         MySql.query(f"select * from employees where employeeNumber = {number}")
         results = MySql.getResults()
+        for item in results:
+            data=Employee(item[0],item[1],item[2],item[3],item[4],item[5],item[6],item[7])
         MySql.closeConnection()
-        return results
+        return data
 
     @classmethod
     def getEmployeesByCity(cls, city):
@@ -25,8 +31,10 @@ class EmployeeDao:
         MySql.query(
             f"select * from employees INNER JOIN offices on employees.officeCode = offices.officeCode where offices.city = '{city}'")
         results = MySql.getResults()
+        for item in results:
+            data=Employee(item[0],item[1],item[2],item[3],item[4],item[5],item[6],item[7])
         MySql.closeConnection()
-        return results
+        return data
 
     # Create
     # employee_data dev'essere un dict con le chiavi esplicitate per poter funzionare

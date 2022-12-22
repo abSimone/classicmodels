@@ -1,8 +1,10 @@
 from dao.officesDao import OfficeDao
 from dto.Customer import Customer
+from dao.EmployeeDao import EmployeeDao
 
-result = OfficeDao.getOfficeByEmployeeNum(1002)
-print(result)
+result = EmployeeDao.getAllEmployees()
+for i in result:
+    print(i)
 
 
         

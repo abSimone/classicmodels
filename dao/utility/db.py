@@ -7,7 +7,7 @@ class MySql:
 
   @classmethod
   def openConnection(cls):
-    config = json.loads(Path(r"dao\utility\c.json").read_text())
+    config = json.loads(Path(r"dao/utility/c.json").read_text())
     try:
       cls.conn =  mysql.connect(**config)
       cls.cursor = cls.conn.cursor()
