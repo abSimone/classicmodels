@@ -9,6 +9,12 @@ class Products:
         self.quantityInStock = quantityInStock
         self.buyPrice = buyPrice
         self.MSRP = MSRP
+        self.firstInit = True
+        
+    def __init__(self, productCode):
+        self.productCode = productCode
+        self.firstInit = False
+
 
     # getter
     @property
@@ -86,4 +92,7 @@ class Products:
         self._MSRP = MSRP
 
     def __str__(self):
-        return f"codice prodotto: {self._productCode}, nome prodotto: {self._productName}, linea prodotto: {self._productLine}, scala prodotto: {self._productScale}, venditore: {self._productVendor}, descrizione: {self._productDescription}, scorte: {self._quantityInStock}, prezzo d'acquisto: {self._buyPrice}, MSRP : {self._MSRP}"
+        if self.firstInit == True:
+            return f"codice prodotto: {self._productCode}, nome prodotto: {self._productName}, linea prodotto: {self._productLine}, scala prodotto: {self._productScale}, venditore: {self._productVendor}, descrizione: {self._productDescription}, scorte: {self._quantityInStock}, prezzo d'acquisto: {self._buyPrice}, MSRP : {self._MSRP}"
+        else:
+            return f"codice prodotto: {self._productCode}"

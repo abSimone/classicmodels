@@ -7,6 +7,11 @@ class Order:
         self.status = status
         self.comments = comments
         self.customerNumber = customerNumber
+        self.firstInit = True
+        
+    def __init__(self, orderNumber):
+        self.orderNumber = orderNumber
+        self.firstInit = False
 
     # getter
     @property
@@ -70,4 +75,7 @@ class Order:
 
 
     def __str__(self):
-        return f"orderNumber: {self._orderNumber}, orderDate: {self._orderDate}, requiredDate: {self._requiredDate}, shippedDate: {self._shippedDate}, status {self._status}, comments: {self._comments}, customerNumber: {self._customerNumber}"
+        if self.firstInit == True:
+            return f"Numero ordine: {self._orderNumber}, data ordine: {self._orderDate}, data richiesta: {self._requiredDate}, data consegna: {self._shippedDate}, status {self._status}, commenti: {self._comments}, numero cliente: {self._customerNumber}"
+        else:
+            return f"Numero ordine: {self._orderNumber}"
