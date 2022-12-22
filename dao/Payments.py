@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.paymentsdto import Paymentsdto
 
 class PaymentsDao:
     @classmethod
@@ -6,8 +7,11 @@ class PaymentsDao:
         MySql.openConnection()
         MySql.query("SELECT * FROM payments")
         data = MySql.getResults()
+        payment=list()
+        for element in data:
+            payment.append(Paymentsdto(element[0], element[1], element[2], element[3]))
         MySql.closeConnection()
-        return data
+        return payment
     
     @classmethod
     def getAllCheckNumbers(cls):
