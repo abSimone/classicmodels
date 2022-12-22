@@ -1,4 +1,4 @@
-class Office:
+class ProductLine:
     def __init__(self, productLine, textDescription, htmlDescription, image):
         self._productLine=productLine
         self._textDescription=textDescription
