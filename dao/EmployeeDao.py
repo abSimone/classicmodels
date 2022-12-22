@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.Office import Office
 
 
 class EmployeeDao:
@@ -34,8 +35,11 @@ class EmployeeDao:
         MySql.query(
             f"select offices.officeCode from employees INNER JOIN offices on employees.officeCode = offices.officeCode where employees.employeeNumber = '{employeeNumber}'")
         results = MySql.getResults()
+        data= list()
+        for element in results:
+            data.append(Office(element[0]))
         MySql.closeConnection()
-        return results
+        return data
 
     # Create
     # employee_data dev'essere un dict con le chiavi esplicitate per poter funzionare
