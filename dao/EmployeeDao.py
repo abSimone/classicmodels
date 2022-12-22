@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from dto.Office import Office
 
 
 class EmployeeDao:
@@ -65,3 +66,24 @@ class EmployeeDao:
             f"delete from employees where employeeNumber = {employee_number}")
         MySql.commit()
         MySql.closeConnection()
+
+    # dettagli ufficio di un impiegato
+    @classmethod
+    def getOfficeByEmployeeNumber(cls, employee_number):
+        MySql.openConnection()
+        MySql.query(
+            f"select o.officeCode, o.city, o.phone, o.addressLine1, o.addressLine2, o.state, o.country, o.postalCode, o.territory \
+            from employees e \
+            INNER JOIN offices o on e.officeCode=o.officeCode \
+            where employeeNumber={employee_number}")
+        results = MySql.getResults()
+        for element in results:
+            office = Office(
+                element[0], element[1],
+                element[2], element[3],
+                element[4], element[5],
+                element[6], element[7],
+                element[8]
+            )
+        MySql.closeConnection()
+        return office
