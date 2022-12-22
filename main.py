@@ -10,4 +10,8 @@ from dto.Office import Office
 #     if len(customer.customerName) <= 6:
 #         risultato_nomi.append([customer.contactFirstName, customer.contactLastName])
 
-print(EmployeeDao.getOfficeByEmployeeNumber(1002))
+office = EmployeeDao.getOfficeByEmployeeNumber(1002)
+
+print(office)
+
+print(f"Codice ufficio: {office.officeCode}")

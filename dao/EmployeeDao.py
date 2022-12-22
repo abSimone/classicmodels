@@ -77,13 +77,6 @@ class EmployeeDao:
             INNER JOIN offices o on e.officeCode=o.officeCode \
             where employeeNumber={employee_number}")
         results = MySql.getResults()
-        for element in results:
-            office = Office(
-                element[0], element[1],
-                element[2], element[3],
-                element[4], element[5],
-                element[6], element[7],
-                element[8]
-            )
+        office = Office(results[0][0], results[0][1], results[0][2], results[0][3], results[0][4], results[0][5], results[0][6], results[0][7], results[0][8])
         MySql.closeConnection()
         return office
