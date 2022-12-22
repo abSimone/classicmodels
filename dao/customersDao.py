@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-from dto.customer import Customer
+from dto.Customer import Customer
 
 class CustomersDao:
     @classmethod
@@ -21,79 +21,7 @@ class CustomersDao:
             results.append(Customer(element[0], element[1], element[2], element[3], element[4], element[5]))
         MySql.closeConnection()
         return results
-    
-    @classmethod
-    def getAllCustomerNumber(cls):
-        MySql.openConnection()
-        MySql.query("SELECT customerNumber FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    @classmethod
-    def getAllCustomersName(cls):
-        MySql.openConnection()
-        MySql.query("SELECT customerName FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    @classmethod
-    def getAllContactLastName(cls):
-        MySql.openConnection()
-        MySql.query("SELECT contactLastName FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    @classmethod
-    def getAllContactFirstName(cls):
-        MySql.openConnection()
-        MySql.query("SELECT contactFirstName FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    @classmethod
-    def getAllContact(cls):
-        MySql.openConnection()
-        MySql.query("SELECT contactFirstName,contactLastName FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    
-    @classmethod
-    def getAllPhone(cls):
-        MySql.openConnection()
-        MySql.query("SELECT phone FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    @classmethod
-    def getAllAddressLine(cls):
-        MySql.openConnection()
-        MySql.query("SELECT addressLine1,addressLine2 FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
-    
-    @classmethod
-    def getAllPosition(cls):
-        MySql.openConnection()
-        MySql.query("SELECT city,state,postalCode,country FROM customers")
-        data= MySql.getResults()
-        MySql.closeConnection()
-        
-        return data
+
     
     @classmethod
     def getAllNameLondon(cls):
@@ -116,14 +44,6 @@ class CustomersDao:
     def getAllPaymentsByCustomerNumber(cls, customerNumber):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM Payments pay JOIN Customers cus on pay.customerNumber = cus.customerNumber WHERE cus.customerNumber = {customerNumber}")
-        data = MySql.getResults()
-        MySql.closeConnection()
-        return data
-    
-    @classmethod
-    def getAllEmployeesBySalesRepEmployeeNumber(cls, salesRepEmployeeNumber):
-        MySql.openConnection()
-        MySql.query(f"SELECT * FROM Employees emp JOIN Customers cus on emp.employeeNumber = cus.salesRepEmployeeNumber WHERE cus.salesRepEmployeeNumber = {salesRepEmployeeNumber}")
         data = MySql.getResults()
         MySql.closeConnection()
         return data
