@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-from dto.Customer import Customer
+from dto.customer import Customer
 
 class CustomersDao:
     @classmethod
