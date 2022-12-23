@@ -5,11 +5,15 @@ class CustomersDao:
     @classmethod
     def getCustomerByCustomerNumber(cls, customerNumber):
         MySql.openConnection()
-        MySql.query(f"SELECT cus.contactFirstName, cus.contactLastName FROM customers cus WHERE cus.customerNumber = '{customerNumber}'")
+        MySql.query(f"SELECT cus.contactLastName, cus.contactFirstName FROM customers cus WHERE cus.customerNumber = '{customerNumber}'")
         data= MySql.getResults()
+        results = list()
+        for element in data:
+            # results.append(Customer(element[0],element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8], element[9], element[10], element[11], element[12]))
+            results.append(Customer(contactLastName = element[0],contactFirstName = element[1]))
         MySql.closeConnection()
         
-        return data
+        return results
     
     @classmethod
     def getAllCustomers(cls):
@@ -18,7 +22,11 @@ class CustomersDao:
         data = MySql.getResults()
         results = list()
         for element in data:
-            results.append(Customer(element[0], element[1], element[2], element[3], element[4], element[5]))
+            results.append(Customer(customerNumber = element[0], customerName = element[1], 
+                                    contactLastName = element[2],contactFirstName = element[3], 
+                                    phone = element[4], addressLine1 = element[5], addressLine2 = element[6],
+                                    city = element[7], state = element[8], postalCode = element[9],
+                                    country = element[10], salesRepEmployeeNumber = element[11], creditLimit = element[12]))
         MySql.closeConnection()
         return results
 

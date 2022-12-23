@@ -1,18 +1,57 @@
 class Customer:
-    def __init__(self, customernumber, name,lastname,firstname,phone,addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber,creditLimit):
-        self._customerNumber=customernumber
-        self._customerName=name
-        self._contactLastName=lastname
-        self._contactFirstName=firstname
-        self._phone=phone
-        self._addressLine1=addressLine1
-        self._addressLine2=addressLine2
-        self._city=city
-        self._state=state
-        self._postalCode=postalCode
-        self._country=country
-        self._salesRepEmployeeNumber=salesRepEmployeeNumber
-        self._creditLimit=creditLimit
+    # def __init__(self,lastname, firstname):
+    #     self._contactLastName=lastname
+    #     self._contactFirstName=firstname      
+    #     self._firstinit = True
+        
+    def __init__(self, **kwargs):
+        if kwargs.get('customerNumber') != None:
+            self.customerNumber = kwargs.get('customerNumber')
+        if kwargs.get('customerName') != None:
+            self.customerName = kwargs.get('customerName')
+        if kwargs.get('contactLastName') != None:
+            self.contactLastName = kwargs.get('contactLastName')
+        if kwargs.get('contactFirstName') != None:
+            self.contactFirstName = kwargs.get('contactFirstName')
+        if kwargs.get('phone') != None:
+            self.phone = kwargs.get('phone')
+        if kwargs.get('addressLine1') != None:
+            self.addressLine1 = kwargs.get('addressLine1')
+        if kwargs.get('addressLine2') != None:
+            self.addressLine2 = kwargs.get('addressLine2')
+        if kwargs.get('city') != None:
+            self.city = kwargs.get('city')
+        if kwargs.get('state') != None:
+            self.state = kwargs.get('state')
+        if kwargs.get('postalCode') != None:
+            self.postalCode = kwargs.get('postalCode')
+        if kwargs.get('country') != None:
+            self.country = kwargs.get('country')
+        if kwargs.get('salesRepEmployeeNumber') != None:
+            self.salesRepEmployeeNumber = kwargs.get('salesRepEmployeeNumber')
+        if kwargs.get('creditLimit') != None:
+            self.creditLimit = kwargs.get('creditLimit')
+        
+        self.string = ''
+        for key in kwargs:
+            self.string += f'{key} = {kwargs[key]}, '
+        
+      
+    # def __init__(self, customernumber, name, lastname, firstname, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit):
+    #     self._customerNumber=customernumber
+    #     self._customerName=name
+    #     self._contactLastName=lastname
+    #     self._contactFirstName=firstname
+    #     self._phone=phone
+    #     self._addressLine1=addressLine1
+    #     self._addressLine2=addressLine2
+    #     self._city=city
+    #     self._state=state
+    #     self._postalCode=postalCode
+    #     self._country=country
+    #     self._salesRepEmployeeNumber=salesRepEmployeeNumber
+    #     self._creditLimit=creditLimit
+    #     self._firstinit = False
         
         
     @property
@@ -28,7 +67,7 @@ class Customer:
         return self._customerName
     
     @customerName.setter    
-    def customerNumber(self, customerName):
+    def customerName(self, customerName):
         self._customerName = customerName
     
     @property
@@ -118,10 +157,12 @@ class Customer:
     @creditLimit.setter    
     def creditLimit(self, creditLimit):
         self._creditLimit = creditLimit
-        
+    
+    # def __str__(self):
+    #     return f'cognome contatto: {self._contactLastName}, nome contatto: {self._contactFirstName}'
     def __str__(self):
-        return f"Numero cliente: {self._customerNumber}, nome cliente: {self._customerName}, cognome contatto: {self._contactLastName}, nome contatto: {self._contactFirstName}, telefono {self._phone}, indirizzo 1: {self._addressLine1}, indirizzo 2: {self._addressLine2}, città: {self._city}, stato: {self._state}, codice postale: {self._postalCode}, paese: {self._country}, salesRepEmployeeNumber: {self._salesRepEmployeeNumber}, limite dredito:{self._creditLimit}"
-        
-        
+        # return f"Numero cliente: {self._customerNumber}, nome cliente: {self._customerName}, cognome contatto: {self._contactLastName}, nome contatto: {self._contactFirstName}, telefono {self._phone}, indirizzo 1: {self._addressLine1}, indirizzo 2: {self._addressLine2}, città: {self._city}, stato: {self._state}, codice postale: {self._postalCode}, paese: {self._country}, salesRepEmployeeNumber: {self._salesRepEmployeeNumber}, limite dredito:{self._creditLimit}"
+        return self.string
+            # return f'cognome contatto: {self._contactLastName}, nome contatto: {self._contactFirstName}'
         
  

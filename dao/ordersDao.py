@@ -85,10 +85,13 @@ class Orders:
                       FROM orders \
                       INNER JOIN orderdetails on orderdetails.orderNumber=orders.orderNumber \
                       INNER JOIN products on orderdetails.productCode=products.productCode \
-                      WHERE productCode= '{code}' ")
+                      WHERE products.productCode= '{code}'")
         data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Order(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
         MySql.closeConnection()
-        return data
+        return results
 
     @classmethod
     def getOrdersByProductLine(cls, line):
