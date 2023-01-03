@@ -9,51 +9,51 @@ class Customer:
         
     @property
     def customerNumber(self):
-        return self.customerNumber 
+        return self._customerNumber 
     
     @customerNumber.setter    
     def customerNumber(self, customerNumber):
-        self.customerNumber = customerNumber
+        self._customerNumber = customerNumber
         
     @property
     def customerName(self):
-        return self.customerName
+        return self._customerName
     
     @customerName.setter    
     def customerNumber(self, customerName):
-        self.customerName = customerName
+        self._customerName = customerName
     
     @property
     def contactLastName(self):
-        return self.contactLastName 
+        return self._contactLastName 
     
     @contactLastName.setter    
     def contactLastName(self, contactLastName):
-        self.contactLastName = contactLastName
+        self._contactLastName = contactLastName
         
     @property
     def contactFirstName(self):
-        return self.contactFirstName 
+        return self._contactFirstName 
     
     @contactFirstName.setter    
     def contactFirstName(self, contactFirstName):
-        self.contactFirstName = contactFirstName
+        self._contactFirstName = contactFirstName
         
     @property
     def phone(self):
-        return self.phone 
+        return self._phone 
     
     @phone.setter    
     def phone(self, phone):
-        self.phone = phone
+        self._phone = phone
         
     @property
     def addressLine1(self):
-        return self.addressLine1 
+        return self._addressLine1 
     
     @addressLine1.setter    
     def addressLine1(self, addressLine1):
-        self.addressLine1 = addressLine1
+        self._addressLine1 = addressLine1
         
         
         

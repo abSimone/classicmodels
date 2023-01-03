@@ -108,3 +108,5 @@ class Orders:
                       values  ({orderNumber},'{orderDate}','{requiredDate}','{shippedDate}','{status}',{comments},{customerNumber})")
         MySql.commit()
         MySql.closeConnection()
+
+        

@@ -47,7 +47,6 @@ class Officedto:
     def territory(self):
         return self._territory
 
-    # setter
 
     @officeCode.setter
     def officeCode(self, officeCode):
