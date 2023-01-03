@@ -1,19 +1,44 @@
+from fastapi import FastAPI
 
-from dao.customersDao import CustomersDao
+from dao.ordersDao import Orders
+from dao.productDao import Product
+from dao.productLinesDao import ProductLinesDao
+from dao.Payments import PaymentsDao
+from dao.orderDetailsDao import orderDetailsDao
+from dao.officesDao import OfficeDao
 from dao.EmployeeDao import EmployeeDao
-from dto.Office import Office
+from dao.customersDao import CustomersDao
 
-# result = CustomersDao.getAllCustomers()
-# print(result)
+app = FastAPI()
 
-# risultato_nomi = []
-# for customer in result:
-#     if len(customer.customerName) <= 6:
-#         risultato_nomi.append([customer.contactFirstName, customer.contactLastName])
+@app.get('/orders')
+async def getOrders():
+  return {'orders' : Orders.getAllOrders()}
 
+@app.get('/products')
+async def getProducts():
+    return {'products' : Product.getAllProduct()}
 
-office = EmployeeDao.getOfficeByEmployeeNumber(1002)
+@app.get('/productLines')
+async def getProductLines():
+    return {'productLines' : ProductLinesDao.getAllProductLines()}
 
-print(office)
+@app.get('/payments')
+async def getPayments():
+    return {'payments' : PaymentsDao.getAllPayments()}
 
-print(f"Codice ufficio: {office.officeCode}")
+@app.get('/orderDetails')
+async def getOrderDetails():
+    return {'oDetails' : orderDetailsDao.getAllOrdersDetails()}
+
+@app.get('/offices')
+async def getOffices():
+    return {'offices' : OfficeDao.getAllOffices()}
+
+@app.get('/employee')
+async def getEmployee():
+    return {'employees' : EmployeeDao.getAllEmployees()}
+
+@app.get('/customers')
+async def getCustomers():
+    return {'costomers' : CustomersDao.getAllCustomers()}

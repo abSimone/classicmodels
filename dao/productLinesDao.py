@@ -12,7 +12,7 @@ class ProductLinesDao:
 
         results = list()
         for element in data:
-            results.append(ProductLine(element[0], element[1], element[2], element[3]))
+            results.append(ProductsLines(element[0], element[1], element[2], element[3]))
         MySql.closeConnection()
         return results
     
