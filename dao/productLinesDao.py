@@ -5,13 +5,13 @@ class ProductLinesDao:
     @classmethod
     def getAllProductLines(cls):
         MySql.openConnection()
-        MySql.query(f'SELECT * from productLines ') 
+        MySql.query("SELECT * FROM ProductLines")
         data = MySql.getResults()
-        productLines = []
+        results = list()
         for element in data:
-            productLines.append(ProductsLines(element[0], element[1],element[2],element[3]))
+            results.append(ProductLine(element[0], element[1], element[2], element[3]))
         MySql.closeConnection()
-        return productLines
+        return results
     
     @classmethod
     def getProductLineByPrimaryKey(cls, productLine):
@@ -34,7 +34,6 @@ class ProductLinesDao:
         MySql.openConnection()
         MySql.query(f'DELETE FROM productlines WHERE productLine = "{product_line}"') 
         MySql.commit()
-        
         MySql.closeConnection()
 
     

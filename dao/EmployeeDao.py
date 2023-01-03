@@ -2,18 +2,17 @@ from dao.utility.db import MySql
 from dto.Office import Office
 from dto.Employee import Employee
 
-
 class EmployeeDao:
     # read
     @classmethod
     def getAllEmployees(cls):
         MySql.openConnection()
-        MySql.query("select * from employees")
-        results = MySql.getResults()
-        employees = []
-        for element in results:
-            employees.append(Employee(
-                element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]))
+        MySql.query("SELECT * FROM Employees")
+        data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Employee(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]))
+
         MySql.closeConnection()
         return employees
 
@@ -35,6 +34,21 @@ class EmployeeDao:
         results = MySql.getResults()
         MySql.closeConnection()
         return results
+    
+    @classmethod
+    def getOfficeByEmployeeNumber(cls, employeeNumber):
+        MySql.openConnection()
+        MySql.query(
+            f"select offices.officeCode,offices.city,offices.phone,offices.addressLine1,offices.addressLine2,offices.state,offices.country,offices.postalCode,offices.territory \
+            from employees \
+            INNER JOIN offices on employees.officeCode = offices.officeCode \
+            where employees.employeeNumber = '{employeeNumber}'")
+        results = MySql.getResults()
+        data= list()
+        for element in results:
+            data.append(Office(element[0],element[1],element[2],element[3],element[4],element[5],element[6],element[7],element[8]))
+        MySql.closeConnection()
+        return data
 
     # Create
     # employee_data dev'essere un dict con le chiavi esplicitate per poter funzionare

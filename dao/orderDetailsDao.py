@@ -6,13 +6,13 @@ class orderDetailsDao:
     @classmethod
     def getAllOrdersDetails(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM orderdetails")
+        MySql.query("SELECT * FROM OrderDetails")
         data = MySql.getResults()
-        orderDetails = []
+        results = list()
         for element in data:
-            orderDetails.append(OrderDetails(element[0],element[1],element[2],element[3],element[4]))
+            results.append(OrderDetail(element[0], element[1], element[2], element[3], element[4]))
         MySql.closeConnection()
-        return orderDetails
+        return results
 
     @classmethod
     def getAllOrdersDetailsNumber(cls):

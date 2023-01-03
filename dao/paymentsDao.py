@@ -5,13 +5,13 @@ class PaymentsDao:
     @classmethod
     def getAllPayments(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM payments")
+        MySql.query("SELECT * FROM Payments")
         data = MySql.getResults()
-        payments = []
+        results = list()
         for element in data:
-            payments.append(Payment(element[0], element[1], element[2], element[3]))
+            results.append(Payments(element[0], element[1], element[2], element[3]))
         MySql.closeConnection()
-        return payments
+        return results
     
     @classmethod
     def getPaymentByCheckNumber(cls, checkNumber):
@@ -50,22 +50,19 @@ class PaymentsDao:
         return data
     
     @classmethod
-    def getAllPaymentsCustomer(cls):
-        customerNumber = int(input('Enter a customer number:\n'))
+    def getPaymentBYCustomerNumber(cls, customerNumber):
         MySql.openConnection()
-        MySql.query(f"SELECT COUNT(*) FROM payments pay \
-                    JOIN customers cus on  pay.customerNumber = cus.customerNumber\
-                    WHERE cus.customerNumber = {customerNumber}")
+        MySql.query(f'SELECT p.checkNumber, p.paymentDate, p.amount \
+                        FROM payments p\
+                        INNER JOIN customers c ON p.customerNumber = c.customerNumber\
+                        WHERE c.customerNumber = {customerNumber}')
         data= MySql.getResults()
         MySql.closeConnection()
         
         return data
     
     @classmethod
-    def getAllDatePaymentsCountry(cls):
-        minDate = input('Enter a min date:\n')
-        maxDate = input('Enter a max date:\n')
-        country = input('Enter a country: \n')
+    def getAllDatePaymentsCountry(cls,minDate,maxDate,country):
         MySql.openConnection()
         MySql.query(f"SELECT * \
                     FROM payments pay \
@@ -79,12 +76,7 @@ class PaymentsDao:
     
     # insert
     @classmethod
-    def insertPayment(cls):
-        print("\nAdd new payment")
-        customerNumber = int(input("\nEnter the customer number: "))
-        checkNumber = input("\nEnter the check number: ")
-        paymentDate = input("\nEnter the payment date: ")
-        amount = float(input("\nEnter the amount: "))
+    def insertPayment(cls, customerNumber, checkNumber, paymentDate, amount):
         MySql.openConnection()
         MySql.query(f"INSERT INTO payments (customerNumber, checkNumber, paymentDate, amount)\
                         VALUES ({customerNumber}, '{checkNumber}', '{paymentDate}', {amount})")
@@ -93,11 +85,7 @@ class PaymentsDao:
     
     # update
     @classmethod
-    def updatePayment(cls):
-        print("\nUpdate payment")
-        checkNumber = input('\nEnter the checkNumber:')
-        paymentDate = input("\nEnter the payment date: ")
-        amount = float(input("\nEnter the amount: "))
+    def updatePayment(cls, checkNumber, paymentDate, amount):
         MySql.openConnection()
         MySql.query(f"UPDATE payments\
                     SET paymentDate = '{paymentDate}', amount = {amount} \
@@ -107,11 +95,10 @@ class PaymentsDao:
         
     # delete
     @classmethod
-    def deletePayment(cls):
-        value = input("Enter the checknumber of the payment you want to delete: ")
+    def deletePayment(cls, checkNumber):
         MySql.openConnection()
         MySql.query("SET FOREIGN_KEY_CHECKS=0")
-        MySql.query(f"DELETE from payments where checkNumber = '{value}'")
+        MySql.query(f"DELETE from payments where checkNumber = '{checkNumber}'")
         MySql.query("SET FOREIGN_KEY_CHECKS=1")
         MySql.commit()
         MySql.closeConnection()
