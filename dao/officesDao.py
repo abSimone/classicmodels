@@ -1,31 +1,27 @@
 from dao.utility.db import MySql
-from dto.Offices import Offices
-
+from dto.Office import Office
 
 class OfficeDao:
     # read
     @classmethod
     def getAllOffices(cls):
         MySql.openConnection()
-        MySql.query("select * from offices")
-        results = MySql.getResults()
+        MySql.query("SELECT * FROM Offices")
+        data = MySql.getResults()
+        results = list()
+        for element in data:
+            results.append(Office(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
         MySql.closeConnection()
         return results
     
     @classmethod
-    def getOfficeByEmployeeNum(cls, employee_num):
+    def getOfficeByOfficeCode(cls, officeCode):
         MySql.openConnection()
-        MySql.query(f"SELECT o.officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory \
-                    FROM offices o \
-                    INNER JOIN employees e on o.officeCode = e.officeCode \
-                    WHERE e.employeeNumber=\"{employee_num}\"")
+        MySql.query(f"select * from offices where officeCode = {officeCode}")
         results = MySql.getResults()
-        data=list()
-        # for item in results:
-        data.append(Offices(results[0][0],results[0][1],results[0][2],results[0][3],results[0][4],results[0][5],results[0][6],results[0][7],results[0][8]))
+        office = Office(results[0][0], results[0][1], results[0][2], results[0][3], results[0][4], results[0][5], results[0][6], results[0][7], results[0][8],)
         MySql.closeConnection()
-        return data
-    
+        return office
 
     # Create
     # office_data dev'essere un dict con le chiavi esplicitate per poter funzionare
