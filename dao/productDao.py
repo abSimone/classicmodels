@@ -1,5 +1,7 @@
 from dao.utility.db import MySql
+
 from dto.Product import Products
+
 
 class Product:
 
@@ -11,6 +13,7 @@ class Product:
         data = MySql.getResults()
         product = Products(data[0][0], data[0][1], data[0][2], data[0][3], data[0][4],
                            data[0][5], data[0][6], data[0][7], data[0][8])
+
         MySql.closeConnection()
         return product
 

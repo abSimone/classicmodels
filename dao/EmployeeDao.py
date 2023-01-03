@@ -1,6 +1,8 @@
 from dao.utility.db import MySql
+
 from dto.Employee import Employee
 from dto.Office import Office
+
 
 class EmployeeDao:
     # read
@@ -16,6 +18,7 @@ class EmployeeDao:
 
         MySql.closeConnection()
         return employees
+
 
     @classmethod
     def getEmployeeByNumber(cls, number):

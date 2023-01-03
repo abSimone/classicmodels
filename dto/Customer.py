@@ -1,4 +1,5 @@
 class Customer:
+
     # def __init__(self,lastname, firstname):
     #     self._contactLastName=lastname
     #     self._contactFirstName=firstname      
@@ -102,6 +103,7 @@ class Customer:
     def addressLine1(self, addressLine1):
         self._addressLine1 = addressLine1
         
+
     @property
     def addressLine2(self):
         return self._addressLine2
@@ -165,4 +167,3 @@ class Customer:
         return self.string
             # return f'cognome contatto: {self._contactLastName}, nome contatto: {self._contactFirstName}'
         
- 
