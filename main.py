@@ -4,7 +4,7 @@ from dao.ordersDao import Orders
 from dao.productDao import Product
 from dao.productLinesDao import ProductLinesDao
 from dao.Payments import PaymentsDao
-from dao.orderDetailsDao import orderDetailsDao
+# from dao.orderDetailsDao import orderDetailsDao
 from dao.officesDao import OfficeDao
 from dao.EmployeeDao import EmployeeDao
 from dao.customersDao import CustomersDao
@@ -27,9 +27,9 @@ async def getProductLines():
 async def getPayments():
     return {'payments' : PaymentsDao.getAllPayments()}
 
-@app.get('/orderDetails')
-async def getOrderDetails():
-    return {'oDetails' : orderDetailsDao.getAllOrdersDetails()}
+# @app.get('/orderDetails')
+# async def getOrderDetails():
+#     return {'oDetails' : orderDetailsDao.getAllOrdersDetails()}
 
 @app.get('/offices')
 async def getOffices():
