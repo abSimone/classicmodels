@@ -1,7 +1,7 @@
 from dao.utility.db import MySql
-from dto.orderDetail import OrderDetail
+from dto.OrderDetails import OrderDetails
 
-class orderDetails:
+class orderDetailsDao:
 
     @classmethod
     def getAllOrdersDetails(cls):

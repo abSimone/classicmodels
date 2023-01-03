@@ -58,7 +58,3 @@ class Order:
         
     def __str__(self):
         return f"Numero ordine: {self._orderNumber}, data ordine: {self._orderDate}, data richiesta: {self._requiredDate}, data di spedizione: {self._shippedDate}, stato: {self._status}, commenti: {self._comments}, numero cliente: {self._customerNumber}"
-        
-        
-        
- 

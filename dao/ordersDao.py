@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-from dto.order import Order
+from dto.Order import Order
 
 class Orders:
 
@@ -17,21 +17,27 @@ class Orders:
     @classmethod
     def getOrdersByCustomerNum(cls, num):
         MySql.openConnection()
-        MySql.query(f"SELECT * \
+        MySql.query(f"SELECT o.orderNumber, o.orderDate, o.requiredDate, o.shippedDate, o.status, o.comments, o.customerNumber  \
                       FROM orders o \
                       INNER JOIN customers c ON o.customerNumber = c.customerNumber \
                       WHERE o.customerNumber={num}")
         data = MySql.getResults()
+        allOrderds = []
+        for element in data:
+            allOrderds.append(Order(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
         MySql.closeConnection()
-        return data
+        return allOrderds[0]
 
     @classmethod
     def getOrdersByOrderNum(cls, num):
         MySql.openConnection()
         MySql.query(f"SELECT * FROM orders WHERE orderNumber={num}")
         data = MySql.getResults()
+        allOrderds = []
+        for element in data:
+            allOrderds.append(Order(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
         MySql.closeConnection()
-        return data
+        return allOrderds[0]
 
     @classmethod
     def getOrdersByOrderStatus(cls, status):

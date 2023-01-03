@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-from dto.office import Office
+from dto.Office import Office
 
 class OfficeDao:
     # read
@@ -13,6 +13,15 @@ class OfficeDao:
             results.append(Office(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
         MySql.closeConnection()
         return results
+    
+    @classmethod
+    def getOfficeByOfficeCode(cls, officeCode):
+        MySql.openConnection()
+        MySql.query(f"select * from offices where officeCode = {officeCode}")
+        results = MySql.getResults()
+        office = Office(results[0][0], results[0][1], results[0][2], results[0][3], results[0][4], results[0][5], results[0][6], results[0][7], results[0][8],)
+        MySql.closeConnection()
+        return office
 
     # Create
     # office_data dev'essere un dict con le chiavi esplicitate per poter funzionare

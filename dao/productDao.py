@@ -1,26 +1,30 @@
 from dao.utility.db import MySql
-from dto.products import Products
+from dto.Product import Products
 
 class Product:
 
     @classmethod
     def getProductbyName(cls, product_name):
         MySql.openConnection()
-        MySql.query(f'SELECT productLine, productName, cast(buyPrice as char) from products where productName="{product_name}" ') 
+        MySql.query(
+            f'SELECT productLine, productName, cast(buyPrice as char) from products where productName="{product_name}" ')
         data = MySql.getResults()
-        for object in data:
-            print(object)
-        
+        product = Products(data[0][0], data[0][1], data[0][2], data[0][3], data[0][4],
+                           data[0][5], data[0][6], data[0][7], data[0][8])
         MySql.closeConnection()
+        return product
 
     @classmethod
     def getProductbyProductline(cls, product_line):
         MySql.openConnection()
-        MySql.query(f'SELECT productLine, productName, cast(buyPrice as char) from products where productLine="{product_line}" order by productName ') 
+        MySql.query(
+            f'SELECT productLine, productName, cast(buyPrice as char) from products where productLine="{product_line}" order by productName ')
         data = MySql.getResults()
+        products = []
         for object in data:
-            print(object)
-        
+            products.append(Products(object[0], object[1], object[2], object[3], object[4],
+                                     object[5], object[6], object[7], object[8]))
+
         MySql.closeConnection()
 
     @classmethod
@@ -35,19 +39,20 @@ class Product:
         MySql.closeConnection()
         return results
 
-    
     @classmethod
-    def  getProductbyID(cls, id_prodotto):
+    def getProductbyID(cls, id_prodotto):
         MySql.openConnection()
-        MySql.query(f'SELECT productCode, productName, cast(buyPrice AS char) FROM products WHERE productCode = "{id_prodotto}"') #inserisci query
+        # inserisci query
+        MySql.query(
+            f'SELECT productCode, productName, cast(buyPrice AS char) FROM products WHERE productCode = "{id_prodotto}"')
 
-        data=MySql.getResults()
+        data = MySql.getResults()
         MySql.closeConnection()
-        for object in data:
-            print(object)
-       
+        product = Products(data[0][0], data[0][1], data[0][2], data[0][3], data[0][4],
+                           data[0][5], data[0][6], data[0][7], data[0][8])
         MySql.closeConnection()
-    
+        return product
+
     @classmethod
     def insertProduct(cls, product_code, product_name, product_line, product_scale, product_vendor, product_description, quantity_instock, buy_price, msrp):
         MySql.openConnection()

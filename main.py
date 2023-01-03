@@ -1,23 +1,18 @@
-from dao.EmployeeDao import EmployeeDao
-from dto.office import Office
 from dao.customersDao import CustomersDao
-from dao.ordersDao import Orders
+from dao.EmployeeDao import EmployeeDao
+from dto.Office import Office
 
-# employeeNumber1 =int(input("Inserisci un codice dell'employee : "))
-# result=EmployeeDao.getOfficeByEmployeeNumber(employeeNumber1)
+# result = CustomersDao.getAllCustomers()
+# print(result)
 
-# for e in result:
-#     print(e)
-# order = Orders.getOrdersByProductCode('S10_1678')
-
-customer = CustomersDao.getAllCustomers()
-
-for e in customer:
-    print(e)
+# risultato_nomi = []
+# for customer in result:
+#     if len(customer.customerName) <= 6:
+#         risultato_nomi.append([customer.contactFirstName, customer.contactLastName])
 
 
+office = EmployeeDao.getOfficeByEmployeeNumber(1002)
 
+print(office)
 
-
-        
-    
+print(f"Codice ufficio: {office.officeCode}")
