@@ -4,8 +4,8 @@ from dto.Product import Products
 
 class OrderDetails:
     def __init__(self, orderNumber, productCode, quantityOrdered, priceEach, orderLineNumber):
-        self.orderNumber = Order(orderNumber)
-        self.productCode = Products(productCode)
+        self.orderNumber = orderNumber
+        self.productCode = productCode
         self.quantityOrdered = quantityOrdered
         self.priceEach = priceEach
         self.orderLineNumber = orderLineNumber
