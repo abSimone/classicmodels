@@ -1,35 +1,19 @@
 
-from dao.productLinesDao import ProductLines
-from dao.ordersDao import Orders
-from fastapi import FastAPI
-from pydantic import BaseModel
-import json
+from dao.customersDao import CustomersDao
+from dao.EmployeeDao import EmployeeDao
+from dto.Office import Office
 
-class Order(BaseModel):
-    orderNumber : str
-    orderDate : str
-    requiredDate : str
-    shippedDate : str | None=None
-    status : str
-    comments : str | None=None
-    customerNumber : str
+# result = CustomersDao.getAllCustomers()
+# print(result)
 
-app=FastAPI()
+# risultato_nomi = []
+# for customer in result:
+#     if len(customer.customerName) <= 6:
+#         risultato_nomi.append([customer.contactFirstName, customer.contactLastName])
 
-@app.get('/')
-def read_root():
-    return {'Hello' : 'World'}
 
-@app.get('/orders')
-def read_orders():
-    order=Orders.getAllOrders()
-    lista=[]
-    for o in order:
-        o=o.__dict__
-        lista.append(o)
-    return json.dumps(lista,indent=2,  default=str)
+office = EmployeeDao.getOfficeByEmployeeNumber(1002)
 
-@app.post('/orders/')
-async def addOrder(order:Order):
-    return order
+print(office)
 
+print(f"Codice ufficio: {office.officeCode}")
