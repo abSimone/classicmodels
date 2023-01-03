@@ -1,13 +1,15 @@
-from dao.customersDao import CustomersDao
-from dto.Customer import Customer
+import json
+from dao.ordersDao import Orders
+from fastapi import FastAPI
 
-result = CustomersDao.getAllCustomers()
-print(result)
 
-risultato_nomi = []
-for customer in result:
-    if len(customer.customerName) <= 6:
-        risultato_nomi.append([customer.contactFirstName, customer.contactLastName])
+result= Orders.getAllOrders()
+result_json=json.dumps(result, default=str)
+result_tuple=tuple(result)
 
-        
-    
+app = FastAPI()
+
+
+@app.get("/orders")
+def read_root():
+    return {result_tuple}
