@@ -1,12 +1,13 @@
 from dao.utility.db import MySql
-from dto.Office import Office
 from dto.Employee import Employee
+from dto.Office import Office
 
 class EmployeeDao:
     # read
     @classmethod
     def getAllEmployees(cls):
         MySql.openConnection()
+
         MySql.query("SELECT * FROM Employees")
         data = MySql.getResults()
         results = list()
@@ -32,7 +33,10 @@ class EmployeeDao:
         MySql.query(
             f"select * from employees INNER JOIN offices on employees.officeCode = offices.officeCode where offices.city = '{city}'")
         results = MySql.getResults()
+        for item in results:
+            data=Employee(item[0],item[1],item[2],item[3],item[4],item[5],item[6],item[7])
         MySql.closeConnection()
+
         return results
     
     @classmethod

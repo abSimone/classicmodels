@@ -1,5 +1,6 @@
 class Employee:
     def __init__(self, employeeNumber, lastName, firstName, extension, email, officeCode, reportsTo, jobTitle):
+
         self._employeeNumber = employeeNumber
         self._lastName=lastName
         self._firstName=firstName
