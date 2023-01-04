@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-from dto.orederdetails import Orderdetailsdto
+from dto.OrderDetails import OrderDetails
 
 class orderDetails:
 
@@ -10,7 +10,7 @@ class orderDetails:
         data = MySql.getResults()
         orderdt=list()
         for element in data:
-            results.append(OrderDetails(element[0], element[1], element[2], element[3], element[4]))
+            orderdt.append(OrderDetails(element[0], element[1], element[2], element[3], element[4]))
         MySql.closeConnection()
         return orderdt
 
