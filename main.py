@@ -6,9 +6,9 @@ from models.office import OfficeModel
 import router.orders as orders
 
 from dao.productDao import Product
-from dao.productLinesDao import ProductLinesDao
+from dao.productLinesDao import ProductLines
 from dao.Payments import PaymentsDao
-from dao.orderDetailDao import orderDetailsDao
+from dao.orderDetailDao import orderDetails
 from dao.officesDao import OfficeDao
 from dao.EmployeeDao import EmployeeDao
 from dao.customersDao import CustomersDao
@@ -24,7 +24,7 @@ async def getProducts():
 
 @app.get('/productLines')
 async def getProductLines():
-    return {'productLines' : ProductLinesDao.getAllProductLines()}
+    return {'productLines' : ProductLines.getAllProductLines()}
 
 # ------ Gruppo 3 ------
 @app.get('/payments')
@@ -33,7 +33,7 @@ async def getPayments():
 
 @app.get('/orderDetails')
 async def getOrderDetails():
-    return {'oDetails' : orderDetailsDao.getAllOrdersDetails()}
+    return {'oDetails' : orderDetails.getAllOrdersDetails()}
 
 # ------ Gruppo 1 + 4 ------
 @app.get('/offices')
