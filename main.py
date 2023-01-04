@@ -1,6 +1,9 @@
 from fastapi import FastAPI
+from typing import List
 
-from dao.ordersDao import Orders
+from models.office import OfficeModel
+import router.orders as orders
+
 from dao.productDao import Product
 from dao.productLinesDao import ProductLinesDao
 from dao.Payments import PaymentsDao
@@ -11,10 +14,9 @@ from dao.customersDao import CustomersDao
 
 app = FastAPI()
 
-@app.get('/orders')
-async def getOrders():
-  return {'orders' : Orders.getAllOrders()}
+app.include_router(orders.router)
 
+# ------ Gruppo 2 ------
 @app.get('/products')
 async def getProducts():
     return {'products' : Product.getAllProduct()}
@@ -23,6 +25,7 @@ async def getProducts():
 async def getProductLines():
     return {'productLines' : ProductLinesDao.getAllProductLines()}
 
+# ------ Gruppo 3 ------
 @app.get('/payments')
 async def getPayments():
     return {'payments' : PaymentsDao.getAllPayments()}
@@ -31,9 +34,14 @@ async def getPayments():
 async def getOrderDetails():
     return {'oDetails' : orderDetailsDao.getAllOrdersDetails()}
 
+# ------ Gruppo 1 + 4 ------
 @app.get('/offices')
 async def getOffices():
-    return {'offices' : OfficeDao.getAllOffices()}
+    return OfficeDao.getAllOffices()
+
+@app.post('/offices/new', response_model=OfficeModel, response_model_include={"officeCode", "postalCode", "territory"})
+async def addOffice(office : OfficeModel):
+  return office
 
 @app.get('/employee')
 async def getEmployee():
