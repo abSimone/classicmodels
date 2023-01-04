@@ -3,7 +3,7 @@ from dao.utility.db import MySql
 from dto.ProductLines import ProductsLines
 
 
-class ProductLinesDao:
+class ProductLines:
     @classmethod
     def getAllProductLines(cls):
         MySql.openConnection()
