@@ -11,9 +11,9 @@ class Products:
         self.MSRP = MSRP
         self.firstInit = True
         
-    def __init__(self, productCode):
+    '''def __init__(self, productCode):
         self.productCode = productCode
-        self.firstInit = False
+        self.firstInit = False'''
 
 
     # getter
@@ -96,3 +96,4 @@ class Products:
             return f"codice prodotto: {self._productCode}, nome prodotto: {self._productName}, linea prodotto: {self._productLine}, scala prodotto: {self._productScale}, venditore: {self._productVendor}, descrizione: {self._productDescription}, scorte: {self._quantityInStock}, prezzo d'acquisto: {self._buyPrice}, MSRP : {self._MSRP}"
         else:
             return f"codice prodotto: {self._productCode}"
+            
