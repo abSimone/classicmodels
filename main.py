@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from typing import List
 
@@ -50,3 +51,4 @@ async def getEmployee():
 @app.get('/customers')
 async def getCustomers():
     return {'costomers' : CustomersDao.getAllCustomers()}
+
