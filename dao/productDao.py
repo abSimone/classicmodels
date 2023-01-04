@@ -40,7 +40,7 @@ class Product:
         for element in data:
             results.append(Products(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]))
         MySql.closeConnection()
-        return results
+        return data
 
     @classmethod
     def getProductbyID(cls, id_prodotto):
