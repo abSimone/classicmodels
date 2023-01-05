@@ -1,5 +1,6 @@
 from dao.utility.db import MySql
 from dto.Office import Office
+from models.office import OfficeModel
 
 class OfficeDao:
     # read
@@ -10,7 +11,7 @@ class OfficeDao:
         data = MySql.getResults()
         results = list()
         for element in data:
-            results.append(Office(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]))
+            results.append(OfficeModel(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]))
         MySql.closeConnection()
         return results
     
