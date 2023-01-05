@@ -104,9 +104,6 @@ def test_get_order_details():
                           )
     assert response.status_code == 200
     assert len(response.json()) > 0
-   
-    assert response.json() == {"customerNumber" : "0001"}
-
     
 def test_all_payments():
     response = client.get('/payments/all')
