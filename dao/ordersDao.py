@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-
+from models.order import OrderModel
 from dto.Order import Order
 
 
@@ -10,10 +10,9 @@ class Orders:
         MySql.openConnection()
         MySql.query("SELECT * FROM Orders")
         data = MySql.getResults()
-
         results = list()
         for element in data:
-            results.append(Order(element[0], element[1], element[2], element[3], element[4], element[5], element[6]))
+            results.append(OrderModel(orderNumber=element[0], orderDate=element[1], requiredDate=element[2], shippedDate=element[3], status=element[4], comments=element[5], customerNumber=element[6]))
         MySql.closeConnection()
         return results
 

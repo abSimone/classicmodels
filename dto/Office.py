@@ -1,6 +1,6 @@
 class Office:
     def __init__(self, officeCode, city, phone, addressLine1, addressLine2, state, country, postalCode, territory):
-        self.officeCode=officeCode
+        self._officeCode=officeCode
         self._city=city
         self._phone=phone
         self._addressLine1=addressLine1

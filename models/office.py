@@ -1,12 +1,12 @@
 from pydantic import BaseModel
 
 class OfficeModel (BaseModel):
-  officeCode : str
+  officeCode : str 
   city : str
-  phone : str | None = None
+  phone : str
   addressLine1 : str
-  addressLine2 : str
-  state : str
+  addressLine2 : str | None = None
+  state : str | None = None
   country : str
   postalCode : str
   territory : str
