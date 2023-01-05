@@ -1,5 +1,6 @@
 from dao.utility.db import MySql
 from dto.paymentsdto import Paymentsdto
+from models.payment import Payment_model
 
 class PaymentsDao:
     @classmethod
@@ -9,7 +10,7 @@ class PaymentsDao:
         data = MySql.getResults()
         payment=list()
         for element in data:
-            payment.append(Paymentsdto(element[0], element[1], element[2], element[3]))
+            payment.append(Payment_model(customer_number= element[0], check_number= element[1], payment_date= str(element[2]), amount= element[3]))
         MySql.closeConnection()
         return payment
     

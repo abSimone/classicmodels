@@ -1,4 +1,5 @@
 from dao.utility.db import MySql
+from models.productLines import ProductLinesModel
 
 from dto.ProductLines import ProductsLines
 
@@ -12,7 +13,7 @@ class ProductLines:
 
         results = list()
         for element in data:
-            results.append(ProductsLines(element[0], element[1], element[2], element[3]))
+            results.append(ProductLinesModel(productLine= element[0], textDescription= element[1], htmlDescription= element[2], image= element[3]))
         MySql.closeConnection()
         return results
     

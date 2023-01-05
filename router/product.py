@@ -1,14 +1,14 @@
 from fastapi import APIRouter
-
+from typing import List
 from dao.productDao import Product
 from models.product import ProductModel
 
 router = APIRouter(prefix='/products', tags=['products'])
 # /products/all
-@router.get('/all')
+@router.get('/all',response_model=List[ProductModel], response_model_exclude={'productScale', 'productVendor', 'productDescription'})
 async def getProduct():
-  return {'products' : Product.getAllProduct()}
+  return Product.getAllProduct()
 
-@router.post('/new', response_model=ProductModel)
+@router.post('/new', response_model=ProductModel, response_model_include={'productCode'})
 async def addProduct(product : ProductModel):
   return product

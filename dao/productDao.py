@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-
+from models.product import ProductModel
 from dto.Product import Products
 
 
@@ -25,7 +25,7 @@ class Product:
         data = MySql.getResults()
         products = []
         for object in data:
-            products.append(Products(object[0], object[1], object[2], object[3], object[4],
+            products.append(Product(object[0], object[1], object[2], object[3], object[4],
                                      object[5], object[6], object[7], object[8]))
 
         MySql.closeConnection()
@@ -38,9 +38,9 @@ class Product:
         data = MySql.getResults()
         results = list()
         for element in data:
-            results.append(Products(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7], element[8]))
+            results.append(ProductModel(productCode= element[0], productName= element[1], productLine= element[2], productScale= element[3], productVendor= element[4], productDescription= element[5], quantityInStock= element[6], buyPrice= element[7], MSRP= element[8]))
         MySql.closeConnection()
-        return data
+        return results
 
     @classmethod
     def getProductbyID(cls, id_prodotto):
