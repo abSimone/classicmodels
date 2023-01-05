@@ -7,11 +7,11 @@ class CustomerModel (BaseModel):
   contactFirstName : str
   phone : str
   addressLine1 : str
-  addressLine2 : str
+  addressLine2 : str | None = None
   city : str
-  state : str
-  postalCode : str
+  state : str | None = None
+  postalCode : str | None = None
   country : str
-  salesRepEmployeeNumber : str
+  salesRepEmployeeNumber : str | None = None
   creditLimit : str
 

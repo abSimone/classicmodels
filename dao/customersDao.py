@@ -1,5 +1,6 @@
 from dao.utility.db import MySql
 from dto.Customer import Customer
+from models.customer import CustomerModel
 
 class CustomersDao:
     @classmethod
@@ -22,7 +23,7 @@ class CustomersDao:
         data = MySql.getResults()
         results = list()
         for element in data:
-            results.append(Customer(customerNumber = element[0], customerName = element[1], 
+            results.append(CustomerModel(customerNumber = element[0], customerName = element[1], 
                                     contactLastName = element[2],contactFirstName = element[3], 
                                     phone = element[4], addressLine1 = element[5], addressLine2 = element[6],
                                     city = element[7], state = element[8], postalCode = element[9],
