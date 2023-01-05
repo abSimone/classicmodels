@@ -15,8 +15,7 @@ async def getOffices():
 
 @router.post(
     '/new',
-    response_model = List[OfficeModel],
-    # response_model_exclude_none = True,
+    response_model = OfficeModel,
     response_model_include = {'officeCode'}
     )
 async def addOffice(office : OfficeModel):

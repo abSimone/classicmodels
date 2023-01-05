@@ -13,6 +13,6 @@ router = APIRouter(prefix='/orders', tags=['orders'])
 async def getOffices():
     return Orders.getAllOrders()
 
-@router.post('/new', status_code=201)
+@router.post('/new', response_model = OrderModel, response_model_include={'orderNumber'})
 async def addOrder(order : OrderModel):
-  return {'detail' : 'success'}
+  return order

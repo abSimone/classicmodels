@@ -16,6 +16,6 @@ router = APIRouter(prefix='/order_details', tags=['order_details'])
 async def getOrderDetails():
     return orderDetails.getAllOrdersDetails()
 
-@router.post('/new', response_model = Order_details_model)
+@router.post('/new', response_model = Order_details_model, response_model_include= {'productCode'})
 async def addOrderDetail(order_detail : Order_details_model):
     return order_detail
