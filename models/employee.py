@@ -7,5 +7,5 @@ class EmployeeModel (BaseModel):
   extension : str
   email : str
   officeCode : str
-  reportsTo : str
+  reportsTo : str | None = None
   jobTitle : str

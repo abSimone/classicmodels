@@ -1,5 +1,5 @@
 from dao.utility.db import MySql
-
+from models.employee import EmployeeModel
 from dto.Employee import Employee
 from dto.Office import Office
 
@@ -14,7 +14,7 @@ class EmployeeDao:
         data = MySql.getResults()
         results = list()
         for element in data:
-            results.append(Employee(element[0], element[1], element[2], element[3], element[4], element[5], element[6], element[7]))
+            results.append(EmployeeModel( employeeNumber= element[0], lastName= element[1], firstName = element[2], extension = element[3], email=element[4], officeCode= element[5], reportsTo=element[6], jobTitle= element[7]))
 
         MySql.closeConnection()
         return results
