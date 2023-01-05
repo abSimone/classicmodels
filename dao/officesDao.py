@@ -11,7 +11,6 @@ class OfficeDao:
         data = MySql.getResults()
         results = list()
         for element in data:
-            print(element)
             results.append(OfficeModel(officeCode = element[0], city = element[1], phone = element[2], addressLine1 = element[3], addressLine2 = element[4], state = element[5], country = element[6], postalCode = element[7], territory = element[8]))
         MySql.closeConnection()
 

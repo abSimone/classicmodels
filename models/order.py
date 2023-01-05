@@ -3,10 +3,10 @@ from datetime import date
 
 
 class OrderModel(BaseModel):
-  orderNumber : str
+  orderNumber : int
   orderDate : date
   requiredDate : date
-  shippedDate : date
+  shippedDate : date | None = None
   status : str
-  comments : str
-  customerNumber : str
+  comments : str | None = None
+  customerNumber : int
