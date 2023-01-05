@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 
 from dao.orderDetailDao import orderDetails
 
@@ -8,14 +8,16 @@ from typing import List
 
 router = APIRouter(prefix='/order_details', tags=['order_details'])
 
+
 @router.get(
     '/all',
-    response_model = List[Order_details_model],
-    response_model_exclude_none = True,
-    response_model_exclude = {'orderLineNumber'})
+    response_model=List[Order_details_model],
+    response_model_exclude_none=True,
+    response_model_exclude={'orderLineNumber'})
 async def getOrderDetails():
     return orderDetails.getAllOrdersDetails()
 
-@router.post('/new', response_model = Order_details_model, response_model_include= {'productCode'})
-async def addOrderDetail(order_detail : Order_details_model):
+
+@router.post('/new', response_model=Order_details_model, response_model_include={'productCode'}, status_code=status.HTTP_201_CREATED)
+async def addOrderDetail(order_detail: Order_details_model):
     return order_detail
