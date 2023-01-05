@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 from typing import List
 from dao.productDao import Product
 from models.product import ProductModel
@@ -9,6 +9,6 @@ router = APIRouter(prefix='/products', tags=['products'])
 async def getProduct():
   return Product.getAllProduct()
 
-@router.post('/new', response_model=ProductModel, response_model_include={'productCode'})
+@router.post('/new', response_model=ProductModel, response_model_include={'productCode'}, status_code=status.HTTP_201_CREATED)
 async def addProduct(product : ProductModel):
   return product
