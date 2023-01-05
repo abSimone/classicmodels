@@ -8,7 +8,8 @@ router = APIRouter(prefix='/customer', tags=['customer'])
 
 @router.get(
   '/all', 
-  response_model=List[CustomerModel], 
+  response_model=List[CustomerModel],
+  response_model_exclude_none=True,
   response_model_exclude={'contactFirstName'},
   response_model_include={'contactLastName'})
 async def getCustomer():
