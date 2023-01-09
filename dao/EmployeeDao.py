@@ -10,7 +10,7 @@ class EmployeeDao:
     def getAllEmployees(cls):
         MySql.openConnection()
 
-        MySql.query("SELECT * FROM Employees")
+        MySql.query("SELECT * FROM employees")
         data = MySql.getResults()
         results = list()
         for element in data:

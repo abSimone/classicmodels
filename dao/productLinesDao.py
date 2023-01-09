@@ -8,7 +8,7 @@ class ProductLines:
     @classmethod
     def getAllProductLines(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM ProductLines")
+        MySql.query("SELECT * FROM productlines")
         data = MySql.getResults()
 
         results = list()
@@ -20,7 +20,7 @@ class ProductLines:
     @classmethod
     def getProductLineByPrimaryKey(cls, productLine):
         MySql.openConnection()
-        MySql.query(f"SELECT * from productLines where productLine = '{productLine}'") 
+        MySql.query(f"SELECT * from productlines where productLine = '{productLine}'") 
         data = MySql.getResults()
         product = ProductsLines(data[0][0], data[0][1],data[0][2],data[0][3])
         MySql.closeConnection()
@@ -30,7 +30,7 @@ class ProductLines:
     @classmethod
     def insertProductLine(cls, product_line, text_description):
         MySql.openConnection()
-        MySql.query(f'insert into productLines values ("{product_line}","{text_description}" , null, null) ') 
+        MySql.query(f'insert into productlines values ("{product_line}","{text_description}" , null, null) ') 
         MySql.commit()
 
         MySql.closeConnection()

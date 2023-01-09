@@ -7,7 +7,7 @@ class OfficeDao:
     @classmethod
     def getAllOffices(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM Offices")
+        MySql.query("SELECT * FROM offices")
         data = MySql.getResults()
         results = list()
         for element in data:

@@ -19,7 +19,7 @@ class CustomersDao:
     @classmethod
     def getAllCustomers(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM Customers")
+        MySql.query("SELECT * FROM customers")
         data = MySql.getResults()
         results = list()
         for element in data:
@@ -44,7 +44,7 @@ class CustomersDao:
     @classmethod
     def getAllOrdersByCustomerNumber(cls, customerNumber):
         MySql.openConnection()
-        MySql.query(f"SELECT * FROM Orders ord JOIN Customers cus on ord.customerNumber = cus.customerNumber WHERE cus.customerNumber = {customerNumber}")
+        MySql.query(f"SELECT * FROM orders ord JOIN customers cus on ord.customerNumber = cus.customerNumber WHERE cus.customerNumber = {customerNumber}")
         data = MySql.getResults()
         MySql.closeConnection()
         return data
@@ -52,7 +52,7 @@ class CustomersDao:
     @classmethod
     def getAllPaymentsByCustomerNumber(cls, customerNumber):
         MySql.openConnection()
-        MySql.query(f"SELECT * FROM Payments pay JOIN Customers cus on pay.customerNumber = cus.customerNumber WHERE cus.customerNumber = {customerNumber}")
+        MySql.query(f"SELECT * FROM payments pay JOIN customers cus on pay.customerNumber = cus.customerNumber WHERE cus.customerNumber = {customerNumber}")
         data = MySql.getResults()
         MySql.closeConnection()
         return data

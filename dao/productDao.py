@@ -34,7 +34,7 @@ class Product:
     def getAllProduct(cls):
         MySql.openConnection()
         MySql.openConnection()
-        MySql.query("SELECT * FROM Products")
+        MySql.query("SELECT * FROM products")
         data = MySql.getResults()
         results = list()
         for element in data:

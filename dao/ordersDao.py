@@ -8,7 +8,7 @@ class Orders:
     @classmethod
     def getAllOrders(cls):
         MySql.openConnection()
-        MySql.query("SELECT * FROM Orders")
+        MySql.query("SELECT * FROM orders")
         data = MySql.getResults()
         results = list()
         for element in data:

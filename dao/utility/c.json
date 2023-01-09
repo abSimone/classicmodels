@@ -1,7 +1,7 @@
 {
   "user": "root",
-  "password": "",
+  "password": "Password01!",
   "database": "classicmodels",
-  "host": "localhost",
+  "host": "database-classicmodels.cetsul63nyeq.eu-south-1.rds.amazonaws.com",
   "port": "3306"
 }
